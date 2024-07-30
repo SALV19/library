@@ -1,30 +1,33 @@
 'use client'
 
-import { api } from "~/trpc/server";
-import HomePage from "./_components/home/HomePage";
 import useFetchBooks from "~/hooks/useFetchData";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import SearchArea from "./_components/home/SearchArea";
+import { useState } from "react";
+import BookList from "./_components/home/BookList";
 
+export default function Home() {
 
-export default async function Home() {
-
-  // const response = await api.google.getBooks({search: 'dogs'})
-  let result = null;
+  const [books, setBooks] = useState<any>()
 
   const fetchBooks = async (e:string) => {
-    result = await useFetchBooks(e);
-    if(result){
-      // console.log(result);
-      // console.log(result.items[0].id);
-      
-    }
+    await useFetchBooks(e)
+      .then(
+        (response) => {
+          setBooks(response);
+          return books;
+        },
+        (error) => alert(error)
+      );
+      if(books) {
+        console.log(books.items[0]);
+      }
   };
 
-  return <div className="bg-[#FFF8F3] h-[50rem] felx flex-col justify-center items-center w-full p-5">
+  return <div className=" h-[50rem] felx flex-col justify-center items-center w-full p-5">
     <SearchArea fetchBooks={fetchBooks} />
-    <HomePage books={result}/>
+    {books ? <BookList books={books}/> : <p className="w-full flex justify-center">Search...</p>}
+    
+    
   </div>
   
 }

@@ -5,6 +5,7 @@ import { type Metadata } from "next";
 
 import { api, TRPCReactProvider } from "~/trpc/react";
 import Navbar from "./_components/navbar";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -14,7 +15,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  modal,
+}: Readonly<{ 
+  children: React.ReactNode,
+  modal: React.ReactNode,
+}>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className="bn bg-[#FFF8F3]">

@@ -12,4 +12,12 @@ export const googleData = createTRPCRouter({
       const response = await axios.get('https://www.googleapis.com/books/v1/volumes?q=' + input.search);
       return response.data;
     }),
+  fetchBook: publicProcedure
+    .input(z.object({
+      id: z.number(),
+    }))
+    .query(async ({input}) => {
+      const response = await axios.get('https://www.googleapis.com/books/v1/volumes/' + input.id);
+      return response.data;
+    })
 })

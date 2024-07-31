@@ -5,8 +5,6 @@ interface Props {
   books: any;
 }
 
-
-
 const BookList: FC<Props> = ({books}) => {    
   useEffect(() => {  }, [books])
 

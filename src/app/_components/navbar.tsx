@@ -1,7 +1,7 @@
 'use client'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCompass, faGear, faHouseChimney } from '@fortawesome/free-solid-svg-icons'
+import { faCompass, faHouseChimney, faUser } from '@fortawesome/free-solid-svg-icons'
 import React, { useState } from 'react'
 import Link from 'next/link'
 
@@ -12,11 +12,11 @@ const Navbar = () => {
       <Link href={'/'} onClick={() => {setSelected('Home')}}>
         <FontAwesomeIcon icon={faHouseChimney}  className={`size-7 ${selected === "Home" ? 'text-[#2E236C]' : 'text-[#CED1E3]'}`}/>
       </Link>
-      <Link href={'/'} onClick={() => {setSelected('Compass')}}>
+      <Link href={'/explore'} onClick={() => {setSelected('Compass')}}>
         <FontAwesomeIcon icon={faCompass}  className={`size-7 ${selected === "Compass" ? 'text-[#2E236C]' : 'text-[#CED1E3]'}`}/>
       </Link>
-      <Link href={'/'} onClick={() => {setSelected('Gear')}}>
-        <FontAwesomeIcon icon={faGear}  className={`size-7 ${selected === "Gear" ? 'text-[#2E236C]' : 'text-[#CED1E3]'}`}/>
+      <Link href={'/'} onClick={() => {setSelected('User')}}>
+        <FontAwesomeIcon icon={faUser}  className={`size-7 ${selected === "User" ? 'text-[#2E236C]' : 'text-[#CED1E3]'}`}/>
       </Link>
       
     </div>

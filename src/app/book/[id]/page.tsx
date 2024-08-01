@@ -39,7 +39,7 @@ export default function Book({
         {book 
       ? <div className='w-full pb-10  flex flex-col items-center'>
           <header className='flex gap-5 mb-3'>
-            <img src={book.volumeInfo.imageLinks.thumbnail} className='drop-shadow-md rounded-md'/>
+            <img src={book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : book.volumeInfo.imageLinks.smallThumbnail} className='drop-shadow-md rounded-md'/>
             <h1 className='text-3xl'>
               {book.volumeInfo.title}
             </h1>
@@ -49,7 +49,8 @@ export default function Book({
               pages: {book.volumeInfo.pageCount}
             </p>
             <p>
-              price: {book.saleInfo.listPrice.amount}$
+            price:
+              {book.saleInfo.amount ? book.saleInfo.listPrice.amount : 'Unknown'}
             </p>
           </div>
 

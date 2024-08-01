@@ -19,5 +19,13 @@ export const googleData = createTRPCRouter({
     .query(async ({input}) => {
       const response = await axios.get('https://www.googleapis.com/books/v1/volumes/' + input.id);
       return response.data;
-    })
+    }),
+  fetchGenre: publicProcedure
+  .input(z.object({
+    genre: z.string()
+  }))
+  .query(async ({input}) => {
+    const response = await axios.get('https://www.googleapis.com/books/v1/volumes?q=subject:' + input.genre)
+    return response.data;
+  })
 })
